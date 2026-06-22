@@ -16,7 +16,7 @@ export default function HeroSection() {
       </h3>
       {/* box humburger */}
       <div>
-        <Menu></Menu>
+        <Menu className="text-white"></Menu>
       </div>
       </div>
 
