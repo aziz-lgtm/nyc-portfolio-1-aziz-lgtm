@@ -1,6 +1,8 @@
+'use client'
 import { tech } from "@/data/tech";
 import { SiHtml5, SiReact } from "react-icons/si";
 import Image from "next/image";
+import { Carousel, CarouselContent,CarouselItem, CarouselPrevious,CarouselNext } from "./ui/carousel";
 
 export default function Tech() {
     return(
@@ -11,9 +13,12 @@ export default function Tech() {
             <p className="w-[353px] h-[56px] font-['Montserrat'] font-medium text-[14px] leading-[28px] text-center text-[#0A0D12] flex-none order-1 self-stretch grow-0">{tech.description}</p>
         </div>
         {/* box 2: html, css, js, react */}
-        <div className="flex flex-col items-center p-0 gap-[32px] w-[361px] h-[358.33px] flex-none order-1 grow-0">
+        
+        <Carousel className="flex flex-col justify-center  p-0 gap-[32px] w-[361px] h-[358.33px] flex-none order-1 grow-0 overflow">
             {/* box html and css */}
-            <div className="flex flex-row items-start p-0 gap-[16px] w-[361px] h-[281px] flex-none order-0 grow-0">
+            
+            <CarouselContent className="flex flex-row items-start p-0 gap-[16px] w-[361px] h-[281px] flex-none order-0 grow-0">
+                <CarouselItem className="flex flex-row items-start p-0 gap-[16px] w-[361px] h-[281px] flex-none order-0 grow-0">
             {/* html: logo, title, description */}
             <div className="flex flex-col items-center p-[40px_16px] gap-[12px] w-[172.5px] h-[281px] bg-[#F3B64C] rounded-[100px] flex-none order-0 grow-0">
                 {/* logo */}
@@ -38,9 +43,9 @@ export default function Tech() {
                     <p className="w-[140.5px] h-[84px] font-['Montserrat'] font-normal text-[14px] leading-[28px] flex items-center justify-center text-center text-[#252B37] flex-none order-1 self-stretch grow-0">{tech.techs[1].description}</p>
                 </div>
             </div>
-            </div>
+                </CarouselItem>
             {/* box js and react */}
-            <div className="flex flex-row items-start p-0 gap-[16px] w-[361px] h-[281px] flex-none order-0 grow-0">
+                <CarouselItem className="flex flex-row items-start p-0 gap-[16px] w-[361px] h-[281px] flex-none order-0 grow-0">
             {/* js: logo, title, description */}
             <div className="flex flex-col items-center p-[40px_16px] gap-[12px] w-[172.5px] h-[281px] bg-[#F3B64C] rounded-[100px] flex-none order-0 grow-0">
                 {/* logo */}
@@ -65,8 +70,14 @@ export default function Tech() {
                     <p className="w-[140.5px] h-[84px] font-['Montserrat'] font-normal text-[14px] leading-[28px] flex items-center justify-center text-center text-[#252B37] flex-none order-1 self-stretch grow-0">{tech.techs[3].description}</p>
                 </div>
             </div>
+                </CarouselItem>
+            </CarouselContent>
+            
+            <div className="flex flex-row justify-center items-center gap-3 mx-auto bg-primary-200">
+                <CarouselPrevious className="static inset-auto my-0" />
+                <CarouselNext className="static inset-auto my-0" />
             </div>
-        </div>
+        </Carousel>
     </section>
     );
 }
