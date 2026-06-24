@@ -6,5 +6,7 @@ export const portfolio = {
         {title:"Portfolio 1", category: "Web Development"},
         {title: "Portfolio 2", category: "Web Development"},
         {title: "Portfolio 3", category: "Web Development"},
-    ]
+    ],
+    discount: "Best Portfolio",
+    
 }

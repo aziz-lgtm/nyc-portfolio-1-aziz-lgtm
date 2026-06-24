@@ -4,7 +4,7 @@ import FeaturesSection from "@/components/FeaturesSection";
 import TechSection from "@/components/TechSection";
 import WhyUsSection from "@/components/WhyUsSection";
 import PortfoliosSection from "@/components/PortfoliosSection";
-
+import ExperiencesSection from "@/components/ExperiencesSection";
 
 
 export default function Home() {
@@ -19,6 +19,7 @@ export default function Home() {
       <TechSection/>
       <WhyUsSection />
       <PortfoliosSection />
+      <ExperiencesSection />
 
     </main>
 
