@@ -5,7 +5,7 @@ import TechSection from "@/components/TechSection";
 import WhyUsSection from "@/components/WhyUsSection";
 import PortfoliosSection from "@/components/PortfoliosSection";
 import ExperiencesSection from "@/components/ExperiencesSection";
-
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -20,6 +20,7 @@ export default function Home() {
       <WhyUsSection />
       <PortfoliosSection />
       <ExperiencesSection />
+      <TestimonialsSection />
 
     </main>
 
