@@ -10,13 +10,13 @@ export default function FAQ() {
                 <p className="w-[361px] h-[56px] font-['Montserrat'] font-normal text-[14px] leading-[28px] text-center text-[#0A0D12] flex-none self-stretch flex-grow-0 tracking-[-0.02em]">{faq.subtitle}</p>
             </div>
             {/* main box 2: 01, 02, 03, 04, 05*/}
-            <Accordion type="single" collapsible className="flex flex-col items-start p-0 gap-5 w-[361px] h-[628px] flex-none self-stretch flex-grow-0">
+            <Accordion type="single" collapsible>
                 {/* 01: span 01, q, a */}
-                <AccordionItem value="item-1" className="">
-                    <span className="">{faq.faqs[0].no}</span>
-                    <div>
+                <AccordionItem value="item-1">
+                    <span className="w-[19px] h-[32px] font-['Montserrat'] font-semibold text-[18px] leading-[32px] text-center tracking-[-0.03em] text-[#0A0D12] flex-none order-0 grow-0 bg-green-400">{faq.faqs[0].no}</span>
+                    <div className="flex flex-col items-start gap-[8px] w-[286px] h-[212px] flex-none order-1 flex-1">
                     <AccordionTrigger className="">{faq.faqs[0].question}</AccordionTrigger>
-                    <AccordionContent className="">{faq.faqs[0].answer}</AccordionContent>
+                    <AccordionContent>{faq.faqs[0].answer}</AccordionContent>
                     </div>
                 </AccordionItem>
                 {/* 02 */}

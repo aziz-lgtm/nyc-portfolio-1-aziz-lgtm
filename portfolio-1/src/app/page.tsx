@@ -7,6 +7,8 @@ import PortfoliosSection from "@/components/PortfoliosSection";
 import ExperiencesSection from "@/components/ExperiencesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQ from "@/components/FAQ"
+import FormSection from "@/components/FormSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -23,6 +25,8 @@ export default function Home() {
       <ExperiencesSection />
       <TestimonialsSection />
       <FAQ />
+      <FormSection />
+      <Footer />
 
     </main>
 
