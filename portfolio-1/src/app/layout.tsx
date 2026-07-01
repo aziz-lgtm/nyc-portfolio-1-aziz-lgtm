@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${bonheurRoyale.variable} ${montserrat.variable} ${anton.variable} h-full antialiased`} >
+      className={`${geistSans.variable} ${geistMono.variable} ${bonheurRoyale.variable} ${montserrat.variable} ${anton.variable} h-full antialiased scroll-smooth`} >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

@@ -1,75 +1,137 @@
+"use client"
+
+import { useState } from "react";
 import {hero} from "@/data/hero";
 import {Button} from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown, X } from "lucide-react";
 import Image from "next/image";
 import { Menu } from 'lucide-react';
 import { Mic } from 'lucide-react';
+import { SiJavascript, SiCss, SiHtml5, SiReact } from "react-icons/si";
 
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skill", href: "#skill" },
+  { label: "Projects", href: "#projects" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
+const techIcons = [
+  { icon: <SiJavascript className="w-5 h-5 text-neutral-950" />, bg: "bg-secondary-100" },
+  { icon: <SiCss className="w-5 h-5 text-white" />, bg: "bg-[#1572B6]" },
+  { icon: <SiHtml5 className="w-5 h-5 text-white" />, bg: "bg-[#E34F26]" },
+  { icon: <SiReact className="w-5 h-5 text-[#61DAFB]" />, bg: "bg-white" },
+];
 
 export default function HeroSection() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <section className="relative left-1/2 top-0 -translate-x-1/2 w-98.5 h-257 bg-[#A53F65]">
+    <section id="home" className="relative left-1/2 top-0 -translate-x-1/2 w-98.5 h-257 md:w-full md:max-w-360 md:h-176 md:mx-auto bg-primary-300">
       {/* box navbar */}
-      <div className="flex flex-row justify-between items-center px-4 py-0 gap-52.25 absolute w-90.25 h-12 left-1/2 -translate-x-1/2 top-4 bg-black/20 backdrop-blur-[20px] rounded-full">
-      <h3 className="w-16.5 h-8.5 font-['Montserrat'] font-bold text-[20px] leading-8.5 text-white flex-none order-0 grow-0">
+      <div className="flex flex-row justify-between items-center px-4 py-0 gap-52.25 absolute w-90.25 h-12 left-1/2 -translate-x-1/2 top-4 bg-black/20 backdrop-blur-[20px] rounded-full md:w-auto md:justify-center md:gap-10 md:px-10">
+      <h3 className="w-16.5 h-8.5 font-['Montserrat'] font-bold text-[20px] leading-8.5 text-white flex-none order-0 grow-0 md:hidden">
         Edwin
       </h3>
-      {/* box humburger */}
-      <div>
+      {/* box humburger (mobile only) */}
+      <button type="button" onClick={() => setMenuOpen(true)} aria-label="Open menu" className="md:hidden">
         <Menu className="text-white"></Menu>
+      </button>
+      {/* nav links (md and up) */}
+      <ul className="hidden md:flex flex-row items-center gap-8 whitespace-nowrap list-none">
+        {navLinks.map((link) => (
+          <li key={link.label}><a href={link.href} className="font-['Montserrat'] font-medium text-body-sm text-white">{link.label}</a></li>
+        ))}
+      </ul>
       </div>
+
+      {/* mobile full-screen nav overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-neutral-950/95 md:hidden">
+          <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close menu" className="absolute top-6 right-6">
+            <X className="w-8 h-8 text-white" />
+          </button>
+          {navLinks.map((link) => (
+            <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)} className="font-['Montserrat'] font-semibold text-2xl text-white">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+
+      {/* tech icon sidebar (md and up) */}
+      <div className="hidden md:flex flex-col items-center gap-4 absolute left-10 top-1/2 -translate-y-1/2 z-10">
+        {techIcons.map(({ icon, bg }, i) => (
+          <div key={i} className={`flex items-center justify-center w-12 h-12 rounded-full border border-primary-300 ${bg}`}>
+            {icon}
+          </div>
+        ))}
       </div>
 
     {/* box hero 1 : box 1 & box 2*/}
-    <div className="flex flex-col items-start gap-6.25 absolute w-90.25 h-107.25 left-4 top-22">
+    <div className="flex flex-col items-start gap-6.25 absolute w-90.25 h-107.25 left-4 top-22 md:contents">
     {/* box 1: mic, h4, subtitle */}
-      <div className="flex flex-col items-start gap-2 w-90.25 h-44.5 flex-none order-0 self-stretch grow-0">
+      <div className="flex flex-col items-start gap-2 w-90.25 h-44.5 flex-none order-0 self-stretch grow-0 md:absolute md:w-80 md:h-auto md:left-10 md:bottom-10">
         {/* box mic */}
         <div className="box-border flex flex-row justify-center items-center p-[2px_5px] gap-2 w-12 h-12 border border-primary-300 rounded-full flex-none order-0 grow-0"><Mic className="w-5 h-6.5 text-white flex-none order-0 grow-0"></Mic></div>
         {/* box h4 */}
-        <h4 className="w-90.25 h-7.5 font-['Montserrat'] font-bold text-[16px] leading-7.5 tracking-[-0.02em] text-white flex-none order-1 self-stretch grow-0">{hero.title}</h4>
+        <h4 className="w-90.25 h-7.5 font-['Montserrat'] font-bold text-[16px] leading-7.5 tracking-[-0.02em] text-white flex-none order-1 self-stretch grow-0 md:w-full md:h-auto">{hero.title}</h4>
         {/* box subtitle */}
-        <p className="w-90.25 h-21 font-['Montserrat'] font-medium text-[14px] leading-7 text-white flex-none order-2 self-stretch grow-0">{hero.description}</p>
+        <p className="w-90.25 h-21 font-['Montserrat'] font-medium text-[14px] leading-7 text-white flex-none order-2 self-stretch grow-0 md:w-full md:h-auto">{hero.description}</p>
       </div>
     {/* box 2 : box stat 1st, box stat 2nd, and box button*/}
-      <div className="flex flex-col items-start gap-5 w-90.25 h-56.5 flex-none order-1 self-stretch grow-0">
+      <div className="flex flex-col items-start gap-5 w-90.25 h-56.5 flex-none order-1 self-stretch grow-0 md:absolute md:w-56 md:h-auto md:right-10 md:top-1/2 md:-translate-y-1/2">
         {/* box stat 1st: stat 1 & stat 2 */}
-        <div className="flex flex-row items-start w-90.25 h-17.25 flex-none order-0 self-stretch grow-0">
+        <div className="flex flex-row items-start w-90.25 h-17.25 flex-none order-0 self-stretch grow-0 md:flex-col md:items-stretch md:gap-3 md:w-full md:h-auto">
           {/* stat 1 */}
-          <div className="flex flex-col items-start gap-0.75 w-[120.33px] h-17.25 flex-none order-0 grow">
-            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0">{hero.stats[0].value}</p>
-            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0">{hero.stats[0].label}</p>
+          <div className="flex flex-col items-start gap-0.75 w-[120.33px] h-17.25 flex-none order-0 grow md:w-full">
+            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0 md:w-full">{hero.stats[0].value}</p>
+            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0 md:w-full">{hero.stats[0].label}</p>
           </div>
-        {/* vertical line */}
-          <span className="w-[60.67px] h-0 border border-primary-300 -rotate-90 flex-none order-1 grow mt-10"></span>
+        {/* vertical line (mobile only) */}
+          <span className="w-[60.67px] h-0 border border-primary-300 -rotate-90 flex-none order-1 grow mt-10 md:hidden"></span>
+          {/* horizontal line (md and up) */}
+          <span className="hidden md:block w-full h-px border-t border-primary-300"></span>
           {/* stat 2 */}
-          <div className="flex flex-col items-start gap-0.75 w-[120.33px] h-17.25 flex-none order-2 grow">
-            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0">{hero.stats[1].value}</p>
-            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0">{hero.stats[1].label}</p>
+          <div className="flex flex-col items-start gap-0.75 w-[120.33px] h-17.25 flex-none order-2 grow md:w-full">
+            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0 md:w-full">{hero.stats[1].value}</p>
+            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0 md:w-full">{hero.stats[1].label}</p>
           </div>
         </div>
+        {/* horizontal line between the two stat rows (md and up) */}
+        <span className="hidden md:block w-full h-px border-t border-primary-300"></span>
         {/* box stat 2nd: stat 3 & stat 4 */}
-        <div className="flex flex-row items-start p-0 w-90.25 h-17.25 flex-none order-1 self-stretch grow-0">
+        <div className="flex flex-row items-start p-0 w-90.25 h-17.25 flex-none order-1 self-stretch grow-0 md:flex-col md:items-stretch md:gap-3 md:w-full md:h-auto">
           {/* stat 3 */}
-          <div className="flex flex-col items-start p-0 gap-0/75 w-[120.33px] h-17.25 flex-none order-0 grow">
-            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0">{hero.stats[2].value}</p>
-            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0">{hero.stats[2].label}</p>
+          <div className="flex flex-col items-start p-0 gap-0/75 w-[120.33px] h-17.25 flex-none order-0 grow md:w-full">
+            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0 md:w-full">{hero.stats[2].value}</p>
+            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0 md:w-full">{hero.stats[2].label}</p>
           </div>
-        {/* vertical line */}
-          <span className="w-[60.67px] h-0 border border-primary-300 -rotate-90 flex-none order-1 grow mt-10"></span>
+        {/* vertical line (mobile only) */}
+          <span className="w-[60.67px] h-0 border border-primary-300 -rotate-90 flex-none order-1 grow mt-10 md:hidden"></span>
+          {/* horizontal line (md and up) */}
+          <span className="hidden md:block w-full h-px border-t border-primary-300"></span>
           {/* stat 4 */}
-          <div className="flex flex-col items-start p-0 gap-0.75 w-[120.33px] h-17.25 flex-none order-2 grow">
-            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0">{hero.stats[3].value}</p>
-            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0">{hero.stats[3].label}</p>
+          <div className="flex flex-col items-start p-0 gap-0.75 w-[120.33px] h-17.25 flex-none order-2 grow md:w-full">
+            <p className="w-[120.33px] h-10.5 font-['Montserrat'] font-bold text-[32px] leading-10.5 tracking-[-0.02em] text-white flex-none order-0 self-stretch grow-0 md:w-full">{hero.stats[3].value}</p>
+            <p className="w-[120.33px] h-6 font-['Montserrat'] font-semibold text-[12px] leading-6 tracking-[-0.03em] text-white flex-none order-1 self-stretch grow-0 md:w-full">{hero.stats[3].label}</p>
           </div>
         </div>
         {/* box button */}
-        <div className="flex flex-row justify-between items-center py-2 px-4 gap-2 w-90.25 h-12 bg-secondary-100 rounded-[100px] flex-none order-2 self-stretch grow-0">
+        <div className="flex flex-row justify-between items-center py-2 px-4 gap-2 w-90.25 h-12 bg-secondary-100 rounded-[100px] flex-none order-2 self-stretch grow-0 md:w-full">
           <Button className="bg-transparent hover:bg-transparent w-full">
           <p className="w-73.25 h-7 font-['Montserrat'] font-semibold text-[14px] leading-7 text-neutral-950 flex-none order-0 grow text-left">Contact Me</p> <div className="flex flex-row items-center p-2 gap-2 w-9 h-9 bg-neutral-950 rounded-[100px] flex-none order-1 grow-0 -mr-2"><ArrowRight></ArrowRight></div>
           </Button>
         </div>
       </div>
+    </div>
+
+    {/* scroll down indicator (md and up) */}
+    <div className="hidden md:flex flex-col items-center gap-1 absolute left-1/2 -translate-x-1/2 bottom-6 z-10">
+      <p className="font-['Montserrat'] font-medium text-body-xs text-white">Scroll Down</p>
+      <ChevronDown className="w-4 h-4 text-white" />
     </div>
          
         <Image alt="Edwin Anderson" src="/hero/edwin_anderson.png" width="375" height="452" className="relative left-[calc(50%-177.5px)] top-144 "></Image>
